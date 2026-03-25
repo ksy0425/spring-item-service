@@ -56,23 +56,28 @@ public class BasicItemController {
 
         itemRepository.save(item);
         // model.addAttribute("item", item); // 자동 추가, 생략 가능
-
-        return "basic/item";
+        return "redirect:/basic/items/" + item.getId();
     }
 
     //@PostMapping("/add")
     public String addItemV3(@ModelAttribute Item item) {
         // Item -> item
         itemRepository.save(item);
-        return "basic/item";
+        return "redirect:/basic/items/" + item.getId();
     }
 
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV4(Item item) {
         // 단순 타입들은 @RequestParam이 들어가지만
         // 이렇게 객체가 타입으로 들어오면 자동으로 @ModelAttribute가 붙음
         itemRepository.save(item);
-        return "basic/item";
+        return "redirect:/basic/items/" + item.getId();
+    }
+
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
